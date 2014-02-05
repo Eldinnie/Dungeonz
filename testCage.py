@@ -96,7 +96,18 @@ class TestCage(unittest.TestCase):
         self.assertFalse(self.testCage1.expanded)
         oldstr=self.testCage1.getAttributes()['strength']
         self.assertTrue(self.testCage1.addUpgrade(self.testUpgrade1))
-        self.assertEqual(self.testCage1.getAttributes()['strength'], , msg)
+        self.assertEqual(self.testCage1.getAttributes()['strength'], oldstr+1)
+        self.assertFalse(self.testCage1.addUpgrade(self.testUpgrade1))
+        oldpl=self.testCage2.getAttributes()['play']
+        self.assertTrue(self.testCage2.addUpgrade(self.testUpgrade2))
+        self.assertEqual(self.testCage2.getAttributes()['play'], oldpl+1)
+        oldmg=self.testCage3.getAttributes()['magic']
+        self.assertTrue(self.testCage3.addUpgrade(self.testUpgrade3))
+        self.assertEqual(self.testCage3.getAttributes()['magic'], oldmg+1)
+        tmpCage=Cage("cage_3.png",strength=1,magic=1,play=1)
+        oldval=tmpCage.getAttributes()['supplies_meat']
+        self.assertTrue(tmpCage.addUpgrade(self.testUpgrade4))
+        self.assertNotEqual(oldval, tmpCage.getAttributes()['supplies_meat'])
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

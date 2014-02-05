@@ -71,7 +71,7 @@ def makePetzArray():
     
 def main():
     preparation()    
-    testers()
+#    testers()
     
 def preparation():
     global CAGES_STACK
