@@ -68,9 +68,8 @@ class CageBoard(object):
     def addUpgrade(self,slot,expansion):
         '''CB.addUpgrade(int,Upgrade) -> Boolean -- Adds a supplied Upgrade-object to slot int. -> False if failed'''
         if (self.cage_upgrades[slot-1]==None) and (self.cages[slot-1] != None):
-            print "adding expansion"
             self.cage_upgrades[slot-1]=expansion
-            self.cages[slot-1].addUpgrade(expansion.type)
+            self.cages[slot-1].addUpgrade(expansion)
             return True
         else:
             return False
@@ -87,9 +86,8 @@ class CageBoard(object):
                     self.baseboard.paste(self.cage_upgrades[x].getImage(),self.upgrade_locs[x])
                 if self.petz[x] != None:
                     self.baseboard.paste(self.petz[x].getImage(),self.petz_locs[x],self.petz[x].getImage())
-                if cage.getPoo()>=1:
-                    print cage.getPoo()
+                if cage.getAttributes()['poo']>=1:
                     self.baseboard.paste(self.poo,self.poo_locs[x],self.poo)
-                    self.draw.text(self.poo_text_locs[x], str(cage.getPoo()),(0,0,0), font=self.font)
+                    self.draw.text(self.poo_text_locs[x], str(cage.getAttributes()['poo']),(0,0,0), font=self.font)
         return self.baseboard
 

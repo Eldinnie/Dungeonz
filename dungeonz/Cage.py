@@ -37,27 +37,45 @@ class Cage(CageFrame):
         self.expanded=False
         self.poo_in_cage=0
 
-    def addUpgrade(self, attr):
-        '''C.addUpgrade(string) -- string contains type of upgrade. The value added by the expansion is added to the cages main value'''
-        if attr=="strength":
-            self.strength+=1
-        elif attr=="magic":
-            self.magic+=1
-        elif attr=="play":
-            self.play += 1
-        elif attr=="supplies_meat":
-            self.supplies_meat=True
+    def addUpgrade(self, upgrade):
+        '''C.addUpgrade(Upgrade) -> bool -- string contains type of upgrade. The value added by the expansion is added to the cages main value. Returns False is failed'''
+        attr = upgrade.type
+        if self.expanded==False:
+            if attr=="strength":
+                self.strength+=1
+                self.expanded=True
+            elif attr=="magic":
+                self.magic+=1
+                self.expanded=True
+            elif attr=="play":
+                self.play += 1
+                self.expanded=True
+            elif attr=="supplies_meat":
+                self.supplies_meat=True
+                self.expanded=True
+            else:
+                return False
+            return True
         else:
-            print "Unknown expansion attribute"
-        self.expanded=True
+            return False
+
 
     def addPoo(self,amount=1):
-        '''C.addPoo(int) -- Increases cages poo by amount int'''
-        self.poo_in_cage+=amount
+        '''C.addPoo([int amount=1]) -> bool -- Increases cages poo by amount int assumes positive integer. False if failed'''
+        if amount > 0:
+            self.poo_in_cage+=amount
+            return True
+        else:
+            return False
 
-    def getPoo(self):
-        '''C.getPoo() -> int -- returns the number of poo in the cage'''
-        return self.poo_in_cage
+    def cleanPoo(self,amount=1):
+        '''C.cleanPoo([int amount=1]) -> bool -- Decreases cages' poo by amount. Assumes positive integer, smaller or equal too poo in cage. False if failed.'''
+        if amount>self.poo_in_cage or amount < 0:
+            return False
+        else:
+            self.poo_in_cage -= amount
+            return True
+
 
     def __repr__(self):
         '''debugging'''
@@ -70,6 +88,28 @@ class Cage(CageFrame):
         retstr+= "Expanded: "+str(self.expanded)+"\n"
         retstr+= "Poo in cage: "+str(self.poo_in_cage)
         return retstr
+
+
+
+
+    def getAttributes(self):
+        '''C.getAttributes() -> Dictionary -- Returns a dictionary with all attributes for this cage'''
+        retdict={}
+        retdict['strength']=self.strength
+        retdict['magic']=self.magic
+        retdict['play']=self.play
+        retdict['supplies_vegetables']=self.supplies_vegetables
+        retdict['supplies_meat']=self.supplies_meat
+        retdict['removes_poo']=self.removes_poo
+        retdict['poo']=self.poo_in_cage
+        return retdict
+
+
+
+
+
+
+
 
 
 

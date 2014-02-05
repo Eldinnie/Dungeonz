@@ -71,22 +71,7 @@ def makePetzArray():
     
 def main():
     preparation()    
-    player1=CageBoard(1)
-    player1.addCage(2, CAGES_STACK[3])
-    player1.addCage(3, CAGES_STACK[2])
-    player1.addCage(4, CAGES_STACK[1])
-    player1.addUpgrade(1, UPGRADES_STACK[5])
-    player1.addUpgrade(2, UPGRADES_STACK[2])
-    player1.addUpgrade(3, UPGRADES_STACK[4])
-    player1.addUpgrade(4, UPGRADES_STACK[1])
-    player1.cages[1].addPoo(3)
-    player1.cages[3].addPoo(4)
-    player1.cages[2].addPoo()
-#    player1.getBoard().show()
-    info(UPGRADES_STACK[0],20,1)
-    info(CAGES_STACK[0],20,1)
-    info(player1,20,1)
-    info(PETZ_STACK[0],20,1)
+    testers()
     
 def preparation():
     global CAGES_STACK
@@ -99,6 +84,24 @@ def preparation():
     random.shuffle(UPGRADES_STACK)
     random.shuffle(PETZ_STACK) 
     
-
+def testers():
+    player1=CageBoard(1)
+    player1.addCage(2, CAGES_STACK[3])
+    player1.addCage(3, CAGES_STACK[2])
+    player1.addCage(4, CAGES_STACK[1])
+    player1.addUpgrade(1, UPGRADES_STACK[5])
+    player1.addUpgrade(2, UPGRADES_STACK[2])
+    player1.addUpgrade(3, UPGRADES_STACK[4])
+    player1.addUpgrade(4, UPGRADES_STACK[1])
+    player1.cages[1].addPoo(3)
+    player1.cages[3].addPoo(4)
+    player1.cages[2].addPoo()
+    player1.getBoard().show()
+    info(UPGRADES_STACK[0],20,1)
+    info(CAGES_STACK[0],20,1)
+    info(player1,20,1)
+    info(PETZ_STACK[0],20,1,"attribute")
+    print dir(CAGES_STACK[0])
+    print CAGES_STACK[0].__class__
 if __name__ == '__main__':
     main()
