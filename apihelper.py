@@ -3,6 +3,8 @@ Created on 5 feb. 2014
 
 @author: Pieter
 '''
+from PIL import Image
+
 def info(obj, spacing=10, collapse=1, attribute="callable"):
     """Print methods and doc strings.\nTakes module, class, list, dictionary, or string."""
     if attribute=="callable":
@@ -17,5 +19,5 @@ def info(obj, spacing=10, collapse=1, attribute="callable"):
 
 if __name__ == "__main__":
     print info.__doc__
-    li = []
-    info(li)
+    li = Image.open("dungeonz\\artwork\\cards\\red_anger.png")
+    print li.__module__

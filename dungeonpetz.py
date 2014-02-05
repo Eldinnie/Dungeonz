@@ -6,12 +6,18 @@ Created on 18 jan. 2014
 from dungeonz.Cage import Cage, Upgrade
 from dungeonz.CageBoard import CageBoard
 from dungeonz.Petz import Pet
-from apihelper import info
+from dungeonz.Card import Card
 import random
 
 CAGES_STACK = []
 UPGRADES_STACK = []
 PETZ_STACK=[]
+CARDS=[[],[],[],[],[]]
+RED = 0
+GREEN=1
+YELLOW=2
+PURPLE=3
+BLUE=4
 PLAYERS=[]
 PLAYER1=0
 PLAYER2=1
@@ -21,7 +27,7 @@ cage_background = Cage("cage_back.png")
 upgrade_background = Upgrade("upgrade_back.png")
 
 
-def makeCageArray():
+def makeCageStack():
     loc = []
     loc.append(Cage("cage_1.png",strength=2,magic=1))
     loc.append(Cage("cage_2.png",strength=1,magic=2))
@@ -36,8 +42,7 @@ def makeCageArray():
     loc.append(Cage("cage_7.png",magic=1,play=2))
     return loc
 
-
-def makeUpgradeArray():
+def makeUpgradeStack():
     loc=[]
     loc.append(Upgrade("upgrade_1.png","strength"))
     loc.append(Upgrade("upgrade_1.png","strength"))
@@ -47,7 +52,7 @@ def makeUpgradeArray():
     loc.append(Upgrade("upgrade_4.png","supplies_meat"))
     return loc
 
-def makePetzArray():
+def makePetzStack():
     loc=[]
     loc.append(Pet("1",eating="veg",sell_value={4:2,5:3,6:4,7:5}))
     loc.append(Pet("2",eating="veg",sell_value={4:2,5:3,6:4,7:5}))
@@ -71,15 +76,45 @@ def makePetzArray():
     
 def main():
     preparation()    
-#    testers()
+#     testers()
     
+def makeCardsStack():
+    tmpgr = {"food":16,"poop":10,"anger":4,"dissease":2}
+    for need,count in tmpgr.items():
+        for x in range(count):  # @UnusedVariable
+            CARDS[GREEN].append(Card("green",need))
+    del(tmpgr)
+    random.shuffle(CARDS[GREEN])
+    tmprd = {"anger":12,"play":4,"food":3,"poop":3,"dissease":2}
+    for need,count in tmprd.items():
+        for x in range(count):  # @UnusedVariable
+            CARDS[RED].append(Card("red",need))
+    del(tmprd)
+    random.shuffle(CARDS[RED])
+    tmpyl={"play":12,"magic":4,"food":2,"poop":2,"dissease":4}
+    for need,count in tmpyl.items():
+        for x in range(count):  # @UnusedVariable
+            CARDS[YELLOW].append(Card("yellow",need))
+    del(tmpyl)
+    random.shuffle(CARDS[YELLOW])
+    tmppl={"magic":12,"anger":4,"play":4,"dissease":4}
+    for need,count in tmppl.items():
+        for x in range(count):  # @UnusedVariable
+            CARDS[PURPLE].append(Card("purple",need))
+    del(tmppl)
+    random.shuffle(CARDS[PURPLE])
+    
+
+
 def preparation():
     global CAGES_STACK
     global UPGRADES_STACK
     global PETZ_STACK
-    PETZ_STACK=makePetzArray()
-    UPGRADES_STACK = makeUpgradeArray()
-    CAGES_STACK = makeCageArray()  
+    global CARDS
+    makeCardsStack()
+    PETZ_STACK=makePetzStack()
+    UPGRADES_STACK = makeUpgradeStack()
+    CAGES_STACK = makeCageStack()  
     random.shuffle(CAGES_STACK)
     random.shuffle(UPGRADES_STACK)
     random.shuffle(PETZ_STACK) 
@@ -96,13 +131,16 @@ def testers():
     player1.cages[1].addPoo(3)
     player1.cages[3].addPoo(4)
     player1.cages[2].addPoo()
-    player1.getBoard().show()
-    info(UPGRADES_STACK[0],20,1)
-    info(CAGES_STACK[0],20,1)
-    info(player1,20,1)
-    info(PETZ_STACK[0],20,1,"attribute")
-    print dir(CAGES_STACK[0])
-    print CAGES_STACK[0].__class__
+#     player1.getBoard().show()
+    print CARDS[GREEN][0].color,CARDS[GREEN][0].need,CARDS[GREEN][0].numNeeds
+    print CARDS[RED][0].color,CARDS[RED][0].need,CARDS[RED][0].numNeeds
+    print CARDS[YELLOW][0].color,CARDS[YELLOW][0].need,CARDS[YELLOW][0].numNeeds
+    print CARDS[PURPLE][0].color,CARDS[PURPLE][0].need,CARDS[PURPLE][0].numNeeds
+    CARDS[GREEN][0].getCard().show()
+    CARDS[GREEN][0].turnCard()
+    print CARDS[GREEN][0].flipped
+    CARDS[GREEN][0].getCard().show()
+    
     
 if __name__ == '__main__':
     main()

@@ -59,7 +59,6 @@ class Cage(CageFrame):
         else:
             return False
 
-
     def addPoo(self,amount=1):
         '''C.addPoo([int amount=1]) -> bool -- Increases cages poo by amount int assumes positive integer. False if failed'''
         if amount > 0:
@@ -76,22 +75,6 @@ class Cage(CageFrame):
             self.poo_in_cage -= amount
             return True
 
-
-    def __repr__(self):
-        '''debugging'''
-        retstr = "Strength: "+str(self.strength)+"\n"
-        retstr+= "Magic resistance: "+str(self.magic)+"\n"
-        retstr+= "Play attributes: "+str(self.play)+"\n"
-        retstr+= "Supplies vegetables "+str(self.supplies_vegetables)+"\n"
-        retstr+= "Supplies Meat: "+str(self.supplies_meat)+"\n"
-        retstr+= "Removes Poo: "+str(self.removes_poo)+"\n"
-        retstr+= "Expanded: "+str(self.expanded)+"\n"
-        retstr+= "Poo in cage: "+str(self.poo_in_cage)
-        return retstr
-
-
-
-
     def getAttributes(self):
         '''C.getAttributes() -> Dictionary -- Returns a dictionary with all attributes for this cage'''
         retdict={}
@@ -104,24 +87,13 @@ class Cage(CageFrame):
         retdict['poo']=self.poo_in_cage
         return retdict
 
-
-
-
-
-
-
-
-
-
 class Upgrade(CageFrame):
     '''Contains information about Cage upgrades
     Mainly image and type
     '''
-    def __init__(self,image,type=None):
-        '''Upgrade(string image, string type) -> Upgrade'''
+    def __init__(self,image,need=None):
+        '''Upgrade(string image, string need) -> Upgrade'''
         tmpimage = "dungeonz\\artwork\\upgrades\\"+image
         self.image= Image.open(tmpimage)
-        self.type=type
-
-
+        self.type=need
 
