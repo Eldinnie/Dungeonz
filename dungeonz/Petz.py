@@ -3,8 +3,7 @@ Created on 19 jan. 2014
 
 @author: Pieter
 '''
-from Cage import Cage
-from PIL import Image
+from PIL import Image  # @UnresolvedImport
 
 class Pet(object):
     '''
@@ -25,23 +24,28 @@ class Pet(object):
         self.sell_value = sell_value
 
     def levelUp(self):
+        '''P.levelUp() -- Levels the pet up, according to the rules of you petz'''
         if self.level==2 or self.level==3:
             self.level +=2
         elif self.level==7:
             pass
         else:
             self.level+=1
-    
+
     def setLevel(self,level):
+        '''P.setLevel() -- Set level (only to distinguish level 2 and 3 petz)'''
         self.level=level
 
     def giveCage(self,cage):
+        '''P.giveCage(Cage) -- Assign a Cage to a Pet'''
         self.cage=cage
 
     def getCage(self):
+        '''p.getCage() -> Cage -- Returns the Cage the pet is in. None if not in Cage'''
         return self.cage
 
     def getImage(self):
+        '''p.getImage() -> Image -- returns PIL Image-object for the pet with correct level'''
         bottom=self.baseroot_bottom+self.image+"_"+str(self.level)+".png"
         top = self.baseroot_top+self.image+".png"
         im=Image.new("RGBA",(85,110))
