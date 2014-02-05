@@ -6,8 +6,9 @@ Created on 18 jan. 2014
 from dungeonz.Cage import Cage, Upgrade
 from dungeonz.CageBoard import CageBoard
 from dungeonz.Petz import Pet
-from PIL import Image
+from apihelper import info
 import random
+
 CAGES_STACK = []
 UPGRADES_STACK = []
 PETZ_STACK=[]
@@ -81,8 +82,11 @@ def main():
     player1.cages[1].addPoo(3)
     player1.cages[3].addPoo(4)
     player1.cages[2].addPoo()
-    player1.getBoard().show()
-
+#    player1.getBoard().show()
+    info(UPGRADES_STACK[0],20,1)
+    info(CAGES_STACK[0],20,1)
+    info(player1,20,1)
+    info(PETZ_STACK[0],20,1)
     
 def preparation():
     global CAGES_STACK

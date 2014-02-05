@@ -7,9 +7,17 @@ from Cage import Cage
 from PIL import Image
 
 class Pet(object):
+    '''
+    The Pet class creates the objects for the petz. It holds and tracks information about the following:
+    - Image-files
+    - Level
+    - Eating habits
+    - sell-values
+    '''
     baseroot_top="dungeonz\\artwork\\petz\\top_"
     baseroot_bottom="dungeonz\\artwork\\petz\\bottom_"
     def __init__(self,image,level=2,eating="omni",sell_value={4:0,5:0,6:0,7:0}):
+        '''Pet(string image,[int level=2,[string eating=omni,[dict sell_value={4:0,5:0,6:0,7:0}]]]) -> Pet'''
         self.cage=None
         self.image = image
         self.level = level
