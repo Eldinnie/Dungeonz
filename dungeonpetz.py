@@ -76,7 +76,7 @@ def makePetzStack():
     
 def main():
     preparation()    
-#     testers()
+    testers()
     
 def makeCardsStack():
     tmpgr = {"food":16,"poop":10,"anger":4,"dissease":2}
