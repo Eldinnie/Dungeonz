@@ -6,7 +6,7 @@ Created on 18 jan. 2014
 from Cage import Cage
 from PIL import Image,ImageFont,ImageDraw  # @UnresolvedImport
 
-class CageBoard(object):
+class CageBoard():
     '''
     The CageBoard is the main placeholder for Everything concerning cages, upgrades and petz.
     The cages are assigned to a slot (1-4) on the cageboard, and so are upgrades.

@@ -5,7 +5,7 @@ Created on 28 jan. 2014
 '''
 from PIL import Image
 
-class Card(object):
+class Card():
     '''Objectholder for the cards in Dunqeun Petz'''
     standards = {"red":"anger","green":"food","purple":"magic","yellow":"play"} #standard needs for a color
 

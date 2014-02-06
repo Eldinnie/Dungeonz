@@ -5,7 +5,7 @@ Created on 19 jan. 2014
 '''
 from PIL import Image  # @UnresolvedImport
 
-class Pet(object):
+class Pet():
     '''
     The Pet class creates the objects for the petz. It holds and tracks information about the following:
     - Image-files

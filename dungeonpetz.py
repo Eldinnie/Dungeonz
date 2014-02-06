@@ -131,7 +131,7 @@ def testers():
     player1.cages[1].addPoo(3)
     player1.cages[3].addPoo(4)
     player1.cages[2].addPoo()
-#     player1.getBoard().show()
+    player1.getBoard().show()
     print CARDS[GREEN][0].color,CARDS[GREEN][0].need,CARDS[GREEN][0].numNeeds
     print CARDS[RED][0].color,CARDS[RED][0].need,CARDS[RED][0].numNeeds
     print CARDS[YELLOW][0].color,CARDS[YELLOW][0].need,CARDS[YELLOW][0].numNeeds

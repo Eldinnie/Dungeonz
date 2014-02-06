@@ -6,7 +6,7 @@ Created on 18 jan. 2014
 from PIL import Image  # @UnresolvedImport
 
 
-class CageFrame(object):
+class CageFrame():
     '''Container class for the general imageobject
     for cages and cage upgrades
     '''
