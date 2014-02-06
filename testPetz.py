@@ -9,7 +9,7 @@ from dungeonz.Cage import Cage
 
 class Test(unittest.TestCase):
 
-    
+
     def testConstructor(self):
         tp = Pet("1",eating="veg",sell_value={4:2,5:3,6:4,7:5})
         self.assertIsInstance(tp, Pet)
@@ -17,7 +17,7 @@ class Test(unittest.TestCase):
         self.assertEqual(tp.eating, "veg")
         self.assertEqual(tp.sell_value, {4:2,5:3,6:4,7:5})
         del(tp)
-        
+
     def testLevelUp(self):
         tp = Pet("1",eating="veg",sell_value={4:2,5:3,6:4,7:5})
         tp2 = Pet("1",eating="veg",sell_value={4:2,5:3,6:4,7:5})
@@ -80,7 +80,7 @@ class Test(unittest.TestCase):
         tpb=tp2.getAttributes()
         self.assertEqual(tpa['sell_value'], 5)
         self.assertEqual(tpb['sell_value'], 4)
-        
+
     def testSetLevelTo3(self):
         tp = Pet("1",eating="veg",sell_value={4:2,5:3,6:4,7:5})
         self.assertEqual(tp.level, 2)
@@ -88,10 +88,32 @@ class Test(unittest.TestCase):
         self.assertEqual(tp.level, 3)
         tp.setLevelTo3()
         self.assertEqual(tp.level, 3)
-        
-        
-        
-        
+
+    def testGiveCage(self):
+        tp = Pet("1",eating="veg",sell_value={4:2,5:3,6:4,7:5})
+        tc = Cage("cage_1.png",strength=2,magic=1)
+        self.assertEqual(tp.cage, None)
+        self.assertTrue(tp.giveCage(tc))
+        self.assertEqual(tp.cage, tc)
+        self.assertFalse(tp.giveCage(tc))
+
+    def testGetCage(self):
+        tp = Pet("1",eating="veg",sell_value={4:2,5:3,6:4,7:5})
+        tc = Cage("cage_1.png",strength=2,magic=1)
+        self.assertEqual(tp.getCage(), None)
+        tp.giveCage(tc)
+        self.assertEqual(tp.getCage(), tc)
+
+    def testRemoveCage(self):
+        tp = Pet("1",eating="veg",sell_value={4:2,5:3,6:4,7:5})
+        tc = Cage("cage_1.png",strength=2,magic=1)
+        tp.giveCage(tc)
+        self.assertEqual(tp.getCage(), tc)
+        tp.removeCage()
+        self.assertEqual(tp.getCage(), None)
+        self.assertEqual(tp.cage, None)
+
+
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
