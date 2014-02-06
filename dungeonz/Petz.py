@@ -43,8 +43,12 @@ class Pet():
         self.level=3
 
     def giveCage(self,cage):
-        '''P.giveCage(Cage) -- Assign a Cage to a Pet'''
-        self.cage=cage
+        '''P.giveCage(Cage) -> bool -- Assign a Cage to a Pet. Returns False if already has a cage'''
+        if not self.cage:
+            self.cage=cage
+            return True
+        else:
+            return False
 
     def getCage(self):
         '''p.getCage() -> Cage -- Returns the Cage the pet is in. None if not in Cage'''
@@ -60,3 +64,9 @@ class Pet():
         im.paste(bottom_image,(0,im.size[1]-bottom_image.size[1]-1),bottom_image)
         im.paste(top_image,(0,0),top_image)
         return im
+    
+    def removeCage(self):
+        '''P.removeCage() -- takes the cage away from the pet (or better removes the pet from a cage)'''
+        self.cage = None
+    
+    
