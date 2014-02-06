@@ -9,7 +9,6 @@ from dungeonz.Cage import Cage
 
 class Test(unittest.TestCase):
 
-
     def testConstructor(self):
         tp = Pet("1",eating="veg",sell_value={4:2,5:3,6:4,7:5})
         self.assertIsInstance(tp, Pet)
