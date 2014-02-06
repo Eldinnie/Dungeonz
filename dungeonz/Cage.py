@@ -77,15 +77,13 @@ class Cage(CageFrame):
 
     def getAttributes(self):
         '''C.getAttributes() -> Dictionary -- Returns a dictionary with all attributes for this cage'''
-        retdict={}
-        retdict['strength']=self.strength
-        retdict['magic']=self.magic
-        retdict['play']=self.play
-        retdict['supplies_vegetables']=self.supplies_vegetables
-        retdict['supplies_meat']=self.supplies_meat
-        retdict['removes_poo']=self.removes_poo
-        retdict['poo']=self.poo_in_cage
-        return retdict
+        return {'strength':self.strength,
+                'magic':self.magic,
+                'play':self.play,
+                'supplies_vegetables':self.supplies_vegetables,
+                'supplies_meat':self.supplies_meat,
+                'removes_poo':self.removes_poo,
+                'poo':self.poo_in_cage}
 
 class Upgrade(CageFrame):
     '''Contains information about Cage upgrades

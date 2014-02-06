@@ -16,7 +16,7 @@ class Pet():
     baseroot_top="dungeonz\\artwork\\petz\\top_"
     baseroot_bottom="dungeonz\\artwork\\petz\\bottom_"
     def __init__(self,image,level=2,eating="omni",sell_value={4:0,5:0,6:0,7:0}):
-        '''Pet(string image,[int level=2,[string eating=omni,[dict sell_value={4:0,5:0,6:0,7:0}]]]) -> Pet'''
+        '''Pet(string image,[int level=2,[string eating="omni",[dict sell_value={4:0,5:0,6:0,7:0}]]]) -> Pet'''
         self.cage=None
         self.image = image
         self.level = level
@@ -25,16 +25,22 @@ class Pet():
 
     def levelUp(self):
         '''P.levelUp() -- Levels the pet up, according to the rules of you petz'''
-        if self.level==2 or self.level==3:
+        if self.level in (2,3):
             self.level +=2
         elif self.level==7:
             pass
         else:
             self.level+=1
 
-    def setLevel(self,level):
+    def getAttributes(self):
+            return {'cage':self.cage,
+                    'level':self.level,
+                    'eating':self.eating,
+                    'sell_value':self.sell_value[self.level]}
+
+    def setLevelTo3(self):
         '''P.setLevel() -- Set level (only to distinguish level 2 and 3 petz)'''
-        self.level=level
+        self.level=3
 
     def giveCage(self,cage):
         '''P.giveCage(Cage) -- Assign a Cage to a Pet'''
