@@ -7,7 +7,6 @@ import unittest
 from dungeonz.Petz import Pet
 from dungeonz.Cage import Cage
 
-
 class Test(unittest.TestCase):
 
     
