@@ -33,10 +33,11 @@ class Pet():
             self.level+=1
 
     def getAttributes(self):
-            return {'cage':self.cage,
-                    'level':self.level,
-                    'eating':self.eating,
-                    'sell_value':self.sell_value[self.level]}
+        '''P.getAttributes() -> dict -- returns a dictionary with all attributes'''
+        return {'cage':self.cage,
+                'level':self.level,
+                'eating':self.eating,
+                'sell_value':self.sell_value[self.level]}
 
     def setLevelTo3(self):
         '''P.setLevel() -- Set level (only to distinguish level 2 and 3 petz)'''
@@ -53,6 +54,10 @@ class Pet():
     def getCage(self):
         '''p.getCage() -> Cage -- Returns the Cage the pet is in. None if not in Cage'''
         return self.cage
+    
+    def removeCage(self):
+        '''P.removeCage() -- takes the cage away from the pet (or better removes the pet from a cage)'''
+        self.cage = None
 
     def getImage(self):
         '''p.getImage() -> Image -- returns PIL Image-object for the pet with correct level'''
@@ -65,8 +70,5 @@ class Pet():
         im.paste(top_image,(0,0),top_image)
         return im
     
-    def removeCage(self):
-        '''P.removeCage() -- takes the cage away from the pet (or better removes the pet from a cage)'''
-        self.cage = None
     
     
