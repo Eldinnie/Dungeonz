@@ -23,31 +23,20 @@ class CageBoard():
     font = ImageFont.truetype("dungeonz\\artwork\\gamefont.ttf", 24)
     def __init__(self,player):
         '''CageBoard(int) -> CageBoard-- int must be the player. This chooses wich mainboard to use.'''
-        self.cages=[]
-        self.cage_upgrades=[]
-        self.petz=[]
-        self.free=[1,1,1,1]
-        self.cages.append(Cage("cage_0.png",1,1))
+        self.cages=[None]*4
+        self.cage_upgrades=[None]*4
+        self.petz=[None]*4
+        self.free=[True,True,True,True]
+        self.cages[0]=Cage("cage_0.png",1,1)
         self.cages[0].addPoo()
-        self.cage_upgrades.append(None)
-        self.cage_upgrades.append(None)
-        self.cage_upgrades.append(None)
-        self.cage_upgrades.append(None)
-        self.cages.append(None)
-        self.cages.append(None)
-        self.cages.append(None)
-        self.petz.append(None)
-        self.petz.append(None)
-        self.petz.append(None)
-        self.petz.append(None)
         self.baseboard = Image.open("dungeonz\\artwork\\boards\\cage_board"+str(player)+".jpg")
         self.draw=ImageDraw.Draw(self.baseboard)
 
     def addCage(self,slot,cage):
         '''CB.addCage(int,Cage) --> Boolean -- Adds the supplied Cage-object to int slot. -> False if failed'''
-        if self.free[slot-1]==1:
+        if self.free[slot-1]:
             self.cages[slot-1]=cage
-            self.free[slot-1]=0
+            self.free[slot-1]=False
             return True
         else:
             return False
@@ -78,7 +67,7 @@ class CageBoard():
         '''CB.getBoard() -> Image -- Returns a PIL Image-object of the full-drawn board. Including: cages, upgrades, petz and poo'''
         for x,cage in enumerate(self.cages):
             if cage != None:
-                if x==0 and self.free[0]==1:
+                if x==0 and self.free[0]:
                     pass
                 else:
                     self.baseboard.paste(cage.getImage(),self.cages_locs[x])
