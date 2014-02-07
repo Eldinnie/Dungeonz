@@ -22,6 +22,8 @@ class Test(unittest.TestCase):
         del(self.cb2)
         del(self.cb3)
         del(self.cb4)
+        del(self.tc1)
+        del(self.tc2)
 
     def testConstructor(self):
         self.assertIsInstance(self.cb1, CageBoard)
@@ -37,7 +39,7 @@ class Test(unittest.TestCase):
         self.assertIsInstance(self.cb1.free, list)
         self.assertEqual(self.cb1.free, [1,1,1,1])
         self.assertEqual(self.cb1.cages[0].getAttributes()['poo'], 1)
-        
+
         self.assertIsInstance(self.cb2, CageBoard)
         self.assertIsInstance(self.cb2.cages, list)
         self.assertIsInstance(self.cb2.cages[0], Cage)
@@ -51,7 +53,7 @@ class Test(unittest.TestCase):
         self.assertIsInstance(self.cb2.free, list)
         self.assertEqual(self.cb2.free, [1,1,1,1])
         self.assertEqual(self.cb2.cages[0].getAttributes()['poo'], 1)
-        
+
         self.assertIsInstance(self.cb3, CageBoard)
         self.assertIsInstance(self.cb3.cages, list)
         self.assertIsInstance(self.cb3.cages[0], Cage)
@@ -65,7 +67,7 @@ class Test(unittest.TestCase):
         self.assertIsInstance(self.cb3.free, list)
         self.assertEqual(self.cb3.free, [1,1,1,1])
         self.assertEqual(self.cb3.cages[0].getAttributes()['poo'], 1)
-        
+
         self.assertIsInstance(self.cb4, CageBoard)
         self.assertIsInstance(self.cb4.cages, list)
         self.assertIsInstance(self.cb4.cages[0], Cage)
@@ -89,7 +91,9 @@ class Test(unittest.TestCase):
         self.assertFalse(self.cb1.addCage(1, self.tc2))
         self.assertEqual(self.cb1.cages[0], self.tc1)
 
-    Z
+    def testGetAttributes(self):
+        pass
+
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()

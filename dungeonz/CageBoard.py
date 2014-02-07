@@ -32,6 +32,21 @@ class CageBoard():
         self.baseboard = Image.open("dungeonz\\artwork\\boards\\cage_board"+str(player)+".jpg")
         self.draw=ImageDraw.Draw(self.baseboard)
 
+    def getAttributes(self,slot=None):
+        '''CB.getAttributes([slot = None]) -> dict -- Returns a dict with all values (for selected slot or all) except image'''
+        if slot:
+            return {'cages':self.cages,
+                    'cage_upgrades':self.cage_upgrades,
+                    'petz':self.petz,
+                    'free':self.free}
+        elif 0<slot<5:
+            di=slot-1
+            return {'cage':self.cages[di],
+                    'cage_upgrade':self.cage_upgrades[di],
+                    'pet':self.petz[di],
+                    'free':self.free[di]}
+        else:
+            return False
 
     def addCage(self,slot,cage):
         '''CB.addCage(int,Cage) --> Boolean -- Adds the supplied Cage-object to int slot. -> False if failed'''
@@ -41,7 +56,6 @@ class CageBoard():
             return True
         else:
             return False
-
 
     def addPetToCage(self,slot,pet):
         '''CB.addPetToCage(int,Pet) -> Boolean -- Adds a supplied pet-object to a cage on slot int on the board. -> False if failed'''
