@@ -42,6 +42,7 @@ class CageBoard():
         else:
             return False
 
+
     def addPetToCage(self,slot,pet):
         '''CB.addPetToCage(int,Pet) -> Boolean -- Adds a supplied pet-object to a cage on slot int on the board. -> False if failed'''
         if self.petz[slot-1]==None and self.cages[slot-1] != None:
