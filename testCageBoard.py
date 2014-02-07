@@ -82,13 +82,14 @@ class Test(unittest.TestCase):
 
     def testAddCage(self):
         self.assertIsInstance(self.cb1.cages[0], Cage)
-        self.assertEqual(self.cb1.free, [True for x in range(4)])
+        self.assertEqual(self.cb1.free, [True for x in range(4)])  # @UnusedVariable
         self.assertTrue(self.cb1.addCage(1, self.tc1))
         self.assertEqual(self.cb1.free, [False,True,True,True])
         self.assertEqual(self.cb1.cages[0], self.tc1)
         self.assertFalse(self.cb1.addCage(1, self.tc2))
         self.assertEqual(self.cb1.cages[0], self.tc1)
 
+    Z
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
