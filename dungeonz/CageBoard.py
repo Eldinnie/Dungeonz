@@ -32,6 +32,7 @@ class CageBoard():
         self.baseboard = Image.open("dungeonz\\artwork\\boards\\cage_board"+str(player)+".jpg")
         self.draw=ImageDraw.Draw(self.baseboard)
 
+
     def addCage(self,slot,cage):
         '''CB.addCage(int,Cage) --> Boolean -- Adds the supplied Cage-object to int slot. -> False if failed'''
         if self.free[slot-1]:
