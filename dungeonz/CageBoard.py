@@ -3,7 +3,8 @@ Created on 18 jan. 2014
 
 @author: Pieter
 '''
-from Cage import Cage
+from Cage import Cage, Upgrade
+from Petz import Pet
 from PIL import Image,ImageFont,ImageDraw  # @UnresolvedImport
 
 class CageBoard():
@@ -50,7 +51,7 @@ class CageBoard():
 
     def addCage(self,slot,cage):
         '''CB.addCage(int,Cage) --> Boolean -- Adds the supplied Cage-object to int slot. -> False if failed'''
-        if self.free[slot-1]:
+        if 0<slot<5 and self.free[slot-1] and isinstance(cage, Cage):
             self.cages[slot-1]=cage
             self.free[slot-1]=False
             return True
@@ -59,20 +60,16 @@ class CageBoard():
 
     def addPetToCage(self,slot,pet):
         '''CB.addPetToCage(int,Pet) -> Boolean -- Adds a supplied pet-object to a cage on slot int on the board. -> False if failed'''
-        if self.petz[slot-1]==None and self.cages[slot-1] != None:
-            return True
+        if 0<slot<5 and self.petz[slot-1]==None and self.cages[slot-1] != None and isinstance(pet, Pet):
             self.petz[slot-1]=pet
             pet.giveCage(self.cages[slot-1])
+            return True
         else:
             return False
 
-    def getCage(self,slot):
-        '''CB.getCage(int) -> Cage-object -- Returns the Cageobject for slot int (None if no cage)'''
-        return self.cages[slot-1]
-
     def addUpgrade(self,slot,expansion):
         '''CB.addUpgrade(int,Upgrade) -> Boolean -- Adds a supplied Upgrade-object to slot int. -> False if failed'''
-        if (self.cage_upgrades[slot-1]==None) and (self.cages[slot-1] != None):
+        if (0<slot<5) and (self.cage_upgrades[slot-1]==None) and (self.cages[slot-1] != None) and isinstance(expansion, Upgrade):
             self.cage_upgrades[slot-1]=expansion
             self.cages[slot-1].addUpgrade(expansion)
             return True

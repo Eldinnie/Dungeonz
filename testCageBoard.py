@@ -88,6 +88,8 @@ class Test(unittest.TestCase):
     def testAddCage(self):
         self.assertIsInstance(self.cb1.cages[0], Cage)
         self.assertEqual(self.cb1.free, [True for x in range(4)])  # @UnusedVariable
+        self.assertFalse(self.cb1.addCage(1, " tralala"))
+        self.assertFalse(self.cb1.addCage(6, self.tc1))
         self.assertTrue(self.cb1.addCage(1, self.tc1))
         self.assertEqual(self.cb1.free, [False,True,True,True])
         self.assertEqual(self.cb1.cages[0], self.tc1)
@@ -115,7 +117,19 @@ class Test(unittest.TestCase):
         self.assertEqual(s2['cage_upgrade'], self.tu)
         self.assertEqual(s2['pet'], self.tp)
         self.assertFalse(s2['free'])
-
+        
+    def testAddPetToCage(self):
+        self.cb1.addCage(2, self.tc1)
+        self.assertEqual(self.cb1.getAttributes(2)['pet'], None)
+        self.assertFalse(self.cb1.addPetToCage(5, self.tp))
+        self.assertFalse(self.cb1.addPetToCage(4, self.tp))
+        self.assertTrue(self.cb1.addPetToCage(2, self.tp))
+        self.assertFalse(self.cb1.addPetToCage(3, "tralala"))
+        self.assertEqual(self.cb1.getAttributes(2)['pet'], self.tp)
+        self.assertEqual(self.tp.getCage(), self.tc1)
+        self.assertFalse(self.cb1.addPetToCage(2, self.tp))
+        
+    
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
     unittest.main()
