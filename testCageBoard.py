@@ -5,7 +5,8 @@ Created on 7 feb. 2014
 '''
 import unittest
 from dungeonz.CageBoard import CageBoard
-from dungeonz.Cage import Cage
+from dungeonz.Cage import Cage, Upgrade
+from dungeonz.Petz import Pet
 
 class Test(unittest.TestCase):
 
@@ -16,6 +17,8 @@ class Test(unittest.TestCase):
         self.cb4 = CageBoard(4)
         self.tc1 = Cage("cage_1.png",strength=2,magic=1)
         self.tc2 = Cage("cage_6.png",magic=3)
+        self.tu=Upgrade("upgrade_1.png", "strength")
+        self.tp=Pet("1",eating="veg",sell_value={4:2,5:3,6:4,7:5})
 
     def tearDown(self):
         del(self.cb1)
@@ -92,7 +95,26 @@ class Test(unittest.TestCase):
         self.assertEqual(self.cb1.cages[0], self.tc1)
 
     def testGetAttributes(self):
-        pass
+        self.assertIsInstance(self.cb1.getAttributes(),dict)
+        aa=self.cb1.getAttributes()
+        self.assertIsInstance(aa['cages'], list)
+        self.assertIsInstance(aa['cage_upgrades'], list)
+        self.assertIsInstance(aa['petz'], list)
+        self.assertIsInstance(aa['free'], list)
+        self.assertEqual(len(aa['cages']), 4)
+        self.assertEqual(len(aa['cage_upgrades']), 4)
+        self.assertEqual(len(aa['petz']), 4)
+        self.assertEqual(len(aa['free']), 4)
+        self.assertFalse(self.cb1.getAttributes(5))
+        self.assertIsInstance(self.cb1.getAttributes(3),dict)
+        self.cb1.addCage(2, self.tc1)
+        self.cb1.cage_upgrades[1] = self.tu
+        self.cb1.petz[1] = self.tp
+        s2= self.cb1.getAttributes(2)
+        self.assertEqual(s2['cage'], self.tc1)
+        self.assertEqual(s2['cage_upgrade'], self.tu)
+        self.assertEqual(s2['pet'], self.tp)
+        self.assertFalse(s2['free'])
 
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']

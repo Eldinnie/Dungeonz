@@ -34,7 +34,7 @@ class CageBoard():
 
     def getAttributes(self,slot=None):
         '''CB.getAttributes([slot = None]) -> dict -- Returns a dict with all values (for selected slot or all) except image'''
-        if slot:
+        if not slot:
             return {'cages':self.cages,
                     'cage_upgrades':self.cage_upgrades,
                     'petz':self.petz,
