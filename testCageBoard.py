@@ -27,6 +27,8 @@ class Test(unittest.TestCase):
         del(self.cb4)
         del(self.tc1)
         del(self.tc2)
+        del(self.tu)
+        del(self.tp)
 
     def testConstructor(self):
         self.assertIsInstance(self.cb1, CageBoard)
@@ -129,6 +131,15 @@ class Test(unittest.TestCase):
         self.assertEqual(self.tp.getCage(), self.tc1)
         self.assertFalse(self.cb1.addPetToCage(2, self.tp))
         
+    def testAddUpgrade(self):
+        self.assertEqual(self.tc1.strength, 2)
+        self.assertFalse(self.cb1.addUpgrade(5, self.tu))
+        self.assertFalse(self.cb1.addUpgrade(1, "trat"))
+        self.assertFalse(self.cb1.addUpgrade(3, self.tu))
+        self.assertTrue(self.cb1.addCage(2, self.tc1))
+        self.assertTrue(self.cb1.addUpgrade(2, self.tu))
+        self.assertEqual(self.tc1.strength, 3)
+        self.assertFalse(self.cb1.addUpgrade(2, self.tu))
     
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testName']
