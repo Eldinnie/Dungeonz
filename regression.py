@@ -19,6 +19,7 @@ __license__ = "Python"
 
 import sys, os, re, unittest
 
+
 def regressionTest():
     path = os.path.abspath(os.path.dirname(sys.argv[0]))
     files = os.listdir(path)
